@@ -1,0 +1,10 @@
+{
+	"port": 5000,
+	"mongoUri": "mongodb+srv://up-dev:upmongo3434@cluster0.rosy0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+	"jwtSecret": "yarmsl444444",
+	"frontUriDev" : "http://localhost:3000",
+	"frontUriIp": "",
+	"frontUriProd": "",
+	"frontUriProdSSL": "",
+	"serverUri" : "http://localhost:5000"
+}
