@@ -5,45 +5,14 @@ import { check, validationResult } from "express-validator";
 import User from "../models/User";
 import config from "config";
 import authCheck from "../middleware/auth.middleware";
+import { RoleTypes } from "../types/types";
 
-const token = (id: string): string =>
-  jwt.sign({ userId: id }, config.get("jwtSecret"), { expiresIn: "1h" });
+const token = (id: string, role: RoleTypes): string =>
+  jwt.sign({ userId: id, role: role }, config.get("jwtSecret"), {
+    expiresIn: "1h",
+  });
 
 const router = Router();
-
-router.post(
-  "/signup",
-  [
-    check("email", "incorrect email").isEmail(),
-    check("password", "min password length 6").isLength({ min: 6 }),
-  ],
-  async (req: Request, res: Response) => {
-    try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        const err = errors.mapped();
-        res.status(400).json({
-          message: err?.email?.msg || err?.password?.msg || "invalid data",
-        });
-        return;
-      }
-      const { email, password } = req.body;
-      const candidate = await User.findOne({ email });
-      if (candidate) {
-        res.status(400).json({ message: "user exists" });
-        return;
-      }
-      const hashedPassword = await bcrypt.hash(password, 12);
-
-      const user = new User({ email, password: hashedPassword });
-      await user.save();
-      res.status(201).json({ token: token(user.id), id: user.id });
-    } catch (e) {
-      res.status(500).json({ message: "signup error" });
-      return;
-    }
-  }
-);
 
 router.post(
   "/signin",
@@ -77,10 +46,19 @@ router.post(
       }
 
       res.json({
-        token: token(user.id),
-        id: user.id,
         name: user.name,
-        avatar: user.avatar,
+        token: token(user._id, user.role),
+        role: user.role,
+        articles: user.articles,
+        companies: user.companies,
+        presentationFile: user.presentationFile,
+        productions: user.productions,
+        projects: user.projects,
+        steps: user.steps,
+        stories: user.stories,
+        storyArticles: user.storyArticles,
+        tags: user.tags,
+        vacancies: user.vacancies,
       });
     } catch (e) {
       res.status(500).json({ message: "signin error" });
@@ -89,7 +67,7 @@ router.post(
   }
 );
 
-router.get("/checkauth", authCheck, async (req: Request, res: Response) => {
+router.get("/", authCheck, async (req: Request, res: Response) => {
   try {
     const userId = req.body.user.userId;
     const user = await User.findOne({ _id: userId });
@@ -97,7 +75,20 @@ router.get("/checkauth", authCheck, async (req: Request, res: Response) => {
       res.status(400).json({ message: "user not found" });
       return;
     }
-    res.json({ id: user.id, name: user.name, avatar: user.avatar });
+    res.json({
+      name: user.name,
+      role: user.role,
+      articles: user.articles,
+      companies: user.companies,
+      presentationFile: user.presentationFile,
+      productions: user.productions,
+      projects: user.projects,
+      steps: user.steps,
+      stories: user.stories,
+      storyArticles: user.storyArticles,
+      tags: user.tags,
+      vacancies: user.vacancies,
+    });
   } catch (e) {
     res.status(500).json({ message: "checkauth error" });
     return;
