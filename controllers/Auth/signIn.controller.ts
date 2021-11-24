@@ -41,7 +41,7 @@ const signInController = async (req: Request, res: Response): Promise<void> => {
       token: token(user._id, user.role),
       role: user.role,
       articles: user.articles,
-      companies: user.companies,
+      customers: user.customers,
       presentationFile: user.presentationFile,
       productions: user.productions,
       projects: user.projects,

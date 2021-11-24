@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { ICompany } from "../types/types";
+import { ICustomer } from "../types/types";
 
-const companySchema = new Schema<ICompany>(
+const customerSchema = new Schema<ICustomer>(
   {
     author: { type: Schema.Types.ObjectId, ref: "User" },
     projects: [{ type: Schema.Types.ObjectId, ref: "Project" }],
@@ -11,4 +11,4 @@ const companySchema = new Schema<ICompany>(
   { timestamps: true }
 );
 
-export default model("Company", companySchema);
+export default model("Customer", customerSchema);

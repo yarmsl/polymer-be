@@ -16,7 +16,7 @@ const authCheckController = async (
       name: user.name,
       role: user.role,
       articles: user.articles,
-      companies: user.companies,
+      customers: user.customers,
       presentationFile: user.presentationFile,
       productions: user.productions,
       projects: user.projects,

@@ -8,7 +8,7 @@ export interface IUser extends Document {
   name: string;
   posts: Schema.Types.ObjectId[];
   role: RoleTypes;
-  companies: Schema.Types.ObjectId[];
+  customers: Schema.Types.ObjectId[];
   tags: Schema.Types.ObjectId[];
   projects: Schema.Types.ObjectId[];
   articles: Schema.Types.ObjectId[];
@@ -31,7 +31,7 @@ export interface PostInterface extends Document {
   date: Date;
 }
 
-export interface ICompany extends Document {
+export interface ICustomer extends Document {
   createdAt: Date;
   updatedAt: Date;
   author: Schema.Types.ObjectId;
