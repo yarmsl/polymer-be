@@ -16,13 +16,13 @@ const deleteUserController = async (
       res.status(400).json({ message: "nobody to delete" });
       return;
     }
-    const user = await User.findOne({ _id: userId });
+    const user = await User.findById(userId);
     if (!user) {
       res.status(400).json({ message: "nobody to delete" });
       return;
     }
     if (user.role === "user") {
-      await User.findOneAndDelete({ _id: userId });
+      await User.findByIdAndDelete(userId);
       res.status(200).json({ message: "user successfully removed" });
       return;
     } else {

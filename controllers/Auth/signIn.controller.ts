@@ -3,12 +3,12 @@ import { validationResult } from "express-validator";
 import User from "../../models/User";
 import bcrypt from "bcrypt";
 import { RoleTypes } from "../../types/types";
-import config from "config";
 import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../../config/constants";
 
 const token = (id: string, role: RoleTypes): string =>
-  jwt.sign({ userId: id, role: role }, config.get("jwtSecret"), {
-    expiresIn: "1h",
+  jwt.sign({ userId: id, role: role }, JWT_SECRET, {
+    expiresIn: "7d",
   });
 
 const signInController = async (req: Request, res: Response): Promise<void> => {
@@ -36,7 +36,7 @@ const signInController = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    res.json({
+    res.status(200).json({
       name: user.name,
       token: token(user._id, user.role),
       role: user.role,

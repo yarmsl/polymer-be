@@ -1,5 +1,6 @@
 import { Document, Schema } from "mongoose";
 
+export type objId = Schema.Types.ObjectId;
 export interface IUser extends Document {
   createdAt: Date;
   updatedAt: Date;
@@ -36,8 +37,9 @@ export interface ICustomer extends Document {
   updatedAt: Date;
   author: Schema.Types.ObjectId;
   projects: Schema.Types.ObjectId[];
-  company: string;
+  name: string;
   logo: string;
+  description: string;
 }
 
 export interface ITag extends Document {
@@ -45,8 +47,7 @@ export interface ITag extends Document {
   updatedAt: Date;
   author: Schema.Types.ObjectId;
   projects: Schema.Types.ObjectId[];
-  tag: string;
-  image: string;
+  name: string;
 }
 
 export interface IProject extends Document {

@@ -5,8 +5,7 @@ const tagSchema = new Schema<ITag>(
   {
     author: { type: Schema.Types.ObjectId, ref: "User" },
     projects: [{ type: Schema.Types.ObjectId, ref: "Project" }],
-    tag: { type: String, required: true },
-    image: { type: String, required: true },
+    name: { type: String, required: true, unique: true, index: true },
   },
   { timestamps: true }
 );
