@@ -13,8 +13,6 @@ const editTagController = async (
       res.status(400).json({ message: "this tag exists" });
       return;
     }
-    const check = await Tag.find()
-    console.log(check)
     const editedTag = await Tag.findByIdAndUpdate(
       tagId,
       { name },

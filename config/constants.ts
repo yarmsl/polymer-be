@@ -16,3 +16,6 @@ export const SCOPE_HOST = [
   FRONT_HOST_PROD,
   FRONT_HOST_PROD_SSL,
 ];
+
+export const MAIL_USER = process.env.MAIL_USER as string;
+export const MAIL_PASS = process.env.MAIL_PASS as string;

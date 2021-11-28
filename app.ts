@@ -7,6 +7,7 @@ import tagRoutes from "./routes/tag.routes";
 import projectRoutes from "./routes/projects.routes";
 import cors from "cors";
 import { DB_HOST, PORT, SCOPE_HOST } from "./config/constants";
+import sendmail from "./routes/sendmail.routes";
 
 
 const corsOptions = {
@@ -27,6 +28,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/customer", customerRoutes);
 app.use("/api/tag", tagRoutes);
 app.use("/api/project", projectRoutes)
+app.use("/api/sendmail", sendmail);
 
 const start = async () => {
   try {
