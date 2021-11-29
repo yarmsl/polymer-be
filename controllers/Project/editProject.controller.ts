@@ -18,7 +18,18 @@ const editProjectController = async (
     if (projectExist) {
       res.status(400).json({ message: "this project exists" });
     }
-    const imgBundle = photoes.concat(images);
+
+    const imgBundle = () => {
+      if (photoes && images) {
+        return photoes.concat(images);
+      } else if (photoes) {
+        return photoes;
+      } else if (images) {
+        return images;
+      } else {
+        return null;
+      }
+    };
 
     const editingProject = await Project.findById(projectId);
 
@@ -53,7 +64,7 @@ const editProjectController = async (
         done,
         customer,
         tags,
-        images: imgBundle,
+        images: imgBundle(),
         slug,
       });
       const result = await Project.findById(projectId);
