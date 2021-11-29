@@ -24,20 +24,13 @@ export interface IUser extends Document {
 
 export type RoleTypes = "admin" | "user" | "dev";
 
-export interface PostInterface extends Document {
-  created_on: Date;
-  author: Schema.Types.ObjectId;
-  title: string;
-  text: string;
-  date: Date;
-}
-
 export interface ICustomer extends Document {
   createdAt: Date;
   updatedAt: Date;
   author: Schema.Types.ObjectId;
   projects: Schema.Types.ObjectId[];
   name: string;
+  slug: string;
   logo: string;
   description: string;
 }
@@ -48,6 +41,7 @@ export interface ITag extends Document {
   author: Schema.Types.ObjectId;
   projects: Schema.Types.ObjectId[];
   name: string;
+  slug: string;
 }
 
 export interface IProject extends Document {
@@ -56,6 +50,7 @@ export interface IProject extends Document {
   author: Schema.Types.ObjectId;
   customer: Schema.Types.ObjectId;
   title: string;
+  slug: string;
   done: string;
   year: number;
   images: string[];

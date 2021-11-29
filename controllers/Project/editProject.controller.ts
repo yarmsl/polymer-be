@@ -13,8 +13,11 @@ const editProjectController = async (
       req.files != null
         ? (req.files as Express.Multer.File[]).map((file) => file.path)
         : [];
-    const { title, year, done, customer, tags, photoes } = req.body;
-
+    const { title, year, done, customer, tags, photoes, slug } = req.body;
+    const projectExist = await Project.findOne({ slug });
+    if (projectExist) {
+      res.status(400).json({ message: "this project exists" });
+    }
     const imgBundle = photoes.concat(images);
 
     const editingProject = await Project.findById(projectId);
@@ -51,6 +54,7 @@ const editProjectController = async (
         customer,
         tags,
         images: imgBundle,
+        slug,
       });
       const result = await Project.findById(projectId);
       res.status(200).json({ result });

@@ -7,18 +7,23 @@ const editTagController = async (
 ): Promise<void> => {
   try {
     const { tagId } = req.params;
-    const { name } = req.body;
-    const tagExist = await Tag.findOne({ name });
-    if (tagExist) {
+    const { name, slug } = req.body;
+    const checkExistName = await Tag.findOne({ name });
+    if (checkExistName) {
+      res.status(400).json({ message: "this tag exists" });
+      return;
+    }
+    const checkExistSlug = await Tag.findOne({ slug });
+    if (checkExistSlug) {
       res.status(400).json({ message: "this tag exists" });
       return;
     }
     const editedTag = await Tag.findByIdAndUpdate(
       tagId,
-      { name },
+      { name, slug },
       { new: true }
     );
-    res.status(200).json({editedTag});
+    res.status(200).json({ editedTag });
     return;
   } catch (e) {
     res.status(500).json({ message: "editing customer error" });

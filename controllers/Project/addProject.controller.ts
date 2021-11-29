@@ -10,8 +10,15 @@ const addProjectController = async (
 ): Promise<void> => {
   try {
     const { userId } = req.body.user;
-    const images = req.files != null ? (req.files as Express.Multer.File[]).map(file => file.path) : [];
-    const { title, year, done, customer, tags } = req.body;
+    const images =
+      req.files != null
+        ? (req.files as Express.Multer.File[]).map((file) => file.path)
+        : [];
+    const { title, year, done, customer, tags, slug } = req.body;
+    const projectExist = await Project.findOne({ slug });
+    if (projectExist) {
+      res.status(400).json({ message: "this project exists" });
+    }
     const newProject = new Project({
       author: userId,
       title,
@@ -20,6 +27,7 @@ const addProjectController = async (
       images,
       customer,
       tags,
+      slug,
     });
     await newProject.save();
     await Customer.findByIdAndUpdate(customer, {

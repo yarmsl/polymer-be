@@ -10,6 +10,7 @@ const projectSchema = new Schema<IProject>(
     year: { type: Number, required: true },
     images: [{ type: String, required: true }],
     tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }],
+    slug: { type: String, required: true, unique: true, index: true },
   },
   { timestamps: true }
 );

@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import nodemailer from "nodemailer";
-import { MAIL_PASS, MAIL_USER } from "../../config/constants";
 
 const sendmailWithFile = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -19,8 +18,8 @@ const sendmailWithFile = async (req: Request, res: Response): Promise<void> => {
     const transporter = nodemailer.createTransport({
       service: "Yandex",
       auth: {
-        user: MAIL_USER,
-        pass: MAIL_PASS,
+        user: 'slideryo@yandex.com',
+        pass: 'yandex427YAROSLAV',
       },
     });
     transporter.sendMail(message, (err, info) => {

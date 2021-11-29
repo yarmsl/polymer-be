@@ -8,7 +8,7 @@ import projectRoutes from "./routes/projects.routes";
 import cors from "cors";
 import { DB_HOST, PORT, SCOPE_HOST } from "./config/constants";
 import sendmail from "./routes/sendmail.routes";
-
+import devRoutes from "./routes/dev.routes";
 
 const corsOptions = {
   origin: SCOPE_HOST,
@@ -27,9 +27,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/customer", customerRoutes);
 app.use("/api/tag", tagRoutes);
-app.use("/api/project", projectRoutes)
+app.use("/api/project", projectRoutes);
 app.use("/api/sendmail", sendmail);
-
+app.use("/api/dev", devRoutes);
 const start = async () => {
   try {
     await mongoose.connect(DB_HOST);

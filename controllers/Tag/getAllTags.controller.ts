@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import Tag from "../../models/Tag";
-import User from "../../models/User";
 
 const getAllTagsController = async (
   req: Request,
@@ -17,6 +16,7 @@ const getAllTagsController = async (
           _id: tag._id,
           projects: tag.projects,
           name: tag.name,
+          slug: tag.slug,
         };
       });
       res.status(200).json(tagsFE);

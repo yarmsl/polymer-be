@@ -20,6 +20,7 @@ const getAllProjectsController = async (
           images: project.images,
           customer: project.customer,
           tags: project.tags,
+          slug: project.slug,
         };
       });
       res.status(200).json(projectsFE);

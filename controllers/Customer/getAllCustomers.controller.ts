@@ -18,6 +18,7 @@ const getAllCustomersController = async (
           name: customer.name,
           description: customer.description,
           logo: customer.logo,
+          slug: customer.slug,
         };
       });
       res.status(200).json(customersFE);
