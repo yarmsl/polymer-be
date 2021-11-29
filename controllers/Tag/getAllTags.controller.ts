@@ -7,7 +7,7 @@ const getAllTagsController = async (
 ): Promise<void> => {
   const userId = req.body?.user?.userId;
   try {
-    const tags = await Tag.find();
+    const tags = await Tag.find().populate('author').populate('projects');
     if (userId) {
       res.status(200).json(tags);
     } else {

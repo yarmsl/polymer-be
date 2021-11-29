@@ -23,7 +23,7 @@ const editTagController = async (
       { name, slug },
       { new: true }
     );
-    res.status(200).json({ editedTag });
+    res.status(200).json(editedTag);
     return;
   } catch (e) {
     res.status(500).json({ message: "editing customer error" });
