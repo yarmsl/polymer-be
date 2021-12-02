@@ -68,7 +68,7 @@ const editProjectController = async (
         slug,
       });
       const result = await Project.findById(projectId);
-      res.status(200).json({ result });
+      res.status(200).json(result);
       return;
     } else {
       res.status(404).json({ message: "project not found" });

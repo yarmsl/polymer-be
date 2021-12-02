@@ -44,6 +44,14 @@ export interface ITag extends Document {
   slug: string;
 }
 
+export interface IBanner extends Document {
+  createdAt: Date;
+  updatedAt: Date;
+  author: Schema.Types.ObjectId;
+  text: string;
+  image: string;
+}
+
 export interface IProject extends Document {
   createdAt: Date;
   updatedAt: Date;

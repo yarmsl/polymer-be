@@ -24,7 +24,7 @@ const editCustomerController = async (
       { name, description, logo, slug },
       { new: true }
     );
-    res.status(200).json({ editedCustomer });
+    res.status(200).json(editedCustomer);
     return;
   } catch (e) {
     res.status(500).json({ message: "editing customer error" });
