@@ -22,7 +22,7 @@ const projectUpload = async (
       cb(null, path);
     },
     filename: (req, file, cb) => {
-      const uniqName = `${file.originalname}_${Date.now()}.svg`;
+      const uniqName = `${file.originalname}_${Date.now()}.webp`;
       cb(null, uniqName);
     },
   });

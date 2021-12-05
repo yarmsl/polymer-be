@@ -7,7 +7,7 @@ const getAllCustomersController = async (
 ): Promise<void> => {
   const userId = req.body?.user?.userId;
   try {
-    const customers = await Customer.find();
+    const customers = await Customer.find().populate('author').populate('projects');
     if (userId) {
       res.status(200).json(customers);
     } else {

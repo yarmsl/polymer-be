@@ -22,7 +22,7 @@ const customerUpload = async (
       cb(null, path);
     },
     filename: (req, file, cb) => {
-      const uniqName = `${file.originalname}_${Date.now()}.svg`;
+      const uniqName = `${file.originalname.slice(0, -4)}_${Date.now()}.svg`;
       cb(null, uniqName);
     },
   });
