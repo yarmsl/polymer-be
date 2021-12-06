@@ -15,9 +15,11 @@ const addProjectController = async (
         ? (req.files as Express.Multer.File[]).map((file) => file.path)
         : [];
     const { title, year, done, customer, tags, slug } = req.body;
+    const arrTags = Array.isArray(tags) ? tags : [tags];
     const projectExist = await Project.findOne({ slug });
     if (projectExist) {
       res.status(400).json({ message: "this project exists" });
+      return
     }
     const newProject = new Project({
       author: userId,
@@ -26,14 +28,14 @@ const addProjectController = async (
       done,
       images,
       customer,
-      tags,
+      arrTags,
       slug,
     });
     await newProject.save();
     await Customer.findByIdAndUpdate(customer, {
       $push: { projects: newProject._id },
     });
-    tags?.forEach(async (tag: string) => {
+    arrTags?.forEach(async (tag: string) => {
       await Tag.findByIdAndUpdate(tag, { $push: { projects: newProject._id } });
     });
     await User.findByIdAndUpdate(req.body.user.userId, {
