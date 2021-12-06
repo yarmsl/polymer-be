@@ -7,7 +7,7 @@ const getAllProjectsController = async (
 ): Promise<void> => {
   const userId = req.body?.user?.userId;
   try {
-    const projects = await Project.find();
+    const projects = await Project.find().populate("author").populate("tags").populate('customer');
     if (userId) {
       res.status(200).json(projects);
     } else {
