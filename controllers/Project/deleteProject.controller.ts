@@ -3,7 +3,7 @@ import Customer from "../../models/Customer";
 import Project from "../../models/Project";
 import Tag from "../../models/Tag";
 import User from "../../models/User";
-
+import { existsSync, unlinkSync } from "fs";
 const deleteProjectController = async (
   req: Request,
   res: Response
@@ -22,6 +22,11 @@ const deleteProjectController = async (
         await Tag.findByIdAndUpdate(tag, {
           $pull: { projects: removingProject._id },
         });
+      });
+      removingProject.images?.forEach((path) => {
+        if (existsSync(path)) {
+          unlinkSync(path);
+        }
       });
       await removingProject.delete();
       res.status(200).json({ message: "project successfully removed" });

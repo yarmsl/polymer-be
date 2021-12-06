@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Customer from "../../models/Customer";
 import Project from "../../models/Project";
 import User from "../../models/User";
+import { existsSync, unlinkSync } from "fs";
 
 const deleteCustomerController = async (
   req: Request,
@@ -19,6 +20,9 @@ const deleteCustomerController = async (
           $pull: { customer: removingCustomer._id },
         });
       });
+      if (existsSync(removingCustomer.logo)) {
+        unlinkSync(removingCustomer.logo);
+      }
       await removingCustomer.delete();
       res.status(200).json({ message: "customer successfully removed" });
       return;

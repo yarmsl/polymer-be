@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import multer from "multer";
-import fs from "fs";
+import {existsSync, mkdirSync} from "fs";
 
 const customerUpload = async (
   req: Request,
@@ -13,8 +13,8 @@ const customerUpload = async (
   const { user } = req.body;
 
   const path = 'uploads/customer/';
-  if (!fs.existsSync(path)) {
-    fs.mkdirSync(path, { recursive: true });
+  if (!existsSync(path)) {
+    mkdirSync(path, { recursive: true });
   }
 
   const storage = multer.diskStorage({
