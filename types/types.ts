@@ -134,3 +134,11 @@ export interface IPresentationFile extends Document {
   author: Schema.Types.ObjectId;
   file: string;
 }
+
+export interface IMail extends Document {
+  createdAt: Date;
+  updatedAt: Date;
+  provider: "Yandex" | "Yahoo" | "Mail.ru";
+  email: string;
+  pass: string;
+}
