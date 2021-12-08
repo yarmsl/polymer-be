@@ -62,24 +62,24 @@ const editProjectController = async (
     }
 
     if (editingProject) {
-      if (customer && customer !== editingProject.customer) {
+      if (customer && customer !== editingProject.customer.toString()) {
         await Customer.findByIdAndUpdate(editingProject.customer, {
           $pull: { projects: editingProject._id },
         });
         await Customer.findByIdAndUpdate(customer, {
-          $push: { projects: customer },
+          $push: { projects: editingProject._id },
         });
       }
       if (Array.isArray(tags) && tags.length > 0) {
         editingProject.tags?.forEach(async (tag) => {
-          if (!tags.includes(tag)) {
+          if (!tags.includes(tag.toString())) {
             await Tag.findByIdAndUpdate(tag, {
               $pull: { projects: editingProject._id },
             });
           }
         });
         tags.forEach(async (tag) => {
-          if (!editingProject.tags.includes(tag)) {
+          if (!editingProject.tags.map((t) => t.toString()).includes(tag)) {
             await Tag.findByIdAndUpdate(tag, {
               $push: { projects: editingProject._id },
             });
