@@ -5,12 +5,10 @@ import deleteMailController from "../controllers/Mail/deleteMail.controller";
 import feedbackController from "../controllers/Mail/feedback.controller";
 import getMailController from "../controllers/Mail/getMail.controller";
 import sendFileController from "../controllers/Mail/sendFile.controller";
-import sendmailWithFile from "../controllers/Mail/sendmailWithFile.controller";
 import authCheck from "../middleware/auth.middleware";
 
 const router = Router();
 
-router.get("/", sendmailWithFile);
 router.post(
   "/",
   authCheck,
