@@ -22,6 +22,7 @@ const getAllCustomersController = async (
         };
       });
       res.status(200).json(customersFE);
+      return
     }
   } catch (e) {
     res.status(500).json({ message: "getting all customers error" });

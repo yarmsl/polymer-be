@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { IBanner } from "../types/types";
 
-const customerSchema = new Schema<IBanner>(
+const bannerSchema = new Schema<IBanner>(
   {
     author: { type: Schema.Types.ObjectId, ref: "User" },
     text: { type: String, required: true },
@@ -10,4 +10,4 @@ const customerSchema = new Schema<IBanner>(
   { timestamps: true }
 );
 
-export default model("Banner", customerSchema);
+export default model("Banner", bannerSchema);

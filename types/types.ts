@@ -139,6 +139,13 @@ export interface IMail extends Document {
   createdAt: Date;
   updatedAt: Date;
   provider: "Yandex" | "Yahoo" | "Mail.ru";
+  feedback: string;
   email: string;
   pass: string;
+}
+
+export interface IBottomBanner extends Document {
+  createdAt: Date;
+  updatedAt: Date;
+  projects: string[];
 }

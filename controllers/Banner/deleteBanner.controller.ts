@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { existsSync, unlinkSync } from "fs";
 import Banner from "../../models/Banner";
 
 const deleteBannerController = async (
@@ -9,6 +10,9 @@ const deleteBannerController = async (
     const { bannerId } = req.params;
     const removingBanner = await Banner.findById(bannerId);
     if (removingBanner) {
+      if (existsSync(removingBanner.image)) {
+        unlinkSync(removingBanner.image);
+      }
       await removingBanner.delete();
       res.status(200).json({ message: "banner successfully removed" });
       return;

@@ -8,8 +8,9 @@ import projectRoutes from "./routes/projects.routes";
 import bannerRoutes from "./routes/banner.routes";
 import cors from "cors";
 import { DB_HOST, PORT, SCOPE_HOST } from "./config/constants";
-import sendmail from "./routes/sendmail.routes";
+import sendmail from "./routes/mail.routes";
 import devRoutes from "./routes/dev.routes";
+import fileRoutes from "./routes/file.routes";
 
 const corsOptions = {
   origin: SCOPE_HOST,
@@ -30,6 +31,7 @@ app.use("/api/banner", bannerRoutes);
 app.use("/api/customer", customerRoutes);
 app.use("/api/tag", tagRoutes);
 app.use("/api/project", projectRoutes);
+app.use("/api/file", fileRoutes);
 app.use("/api/mail", sendmail);
 app.use("/api/dev", devRoutes);
 const start = async () => {
