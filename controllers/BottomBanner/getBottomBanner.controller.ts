@@ -8,7 +8,7 @@ const getBottomBannerController = async (
   try {
     const bottomBanner = await BottomBanner.findOne();
     if (bottomBanner) {
-      res.status(201).json(bottomBanner);
+      res.status(200).json(bottomBanner);
       return;
     } else {
       res.status(404).json({ message: "bottom banner not found" });
