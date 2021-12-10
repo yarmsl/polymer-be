@@ -7,13 +7,13 @@ const getFileController = async (
 ): Promise<void> => {
   const userId = req.body?.user?.userId;
   try {
-    const file = await PresentationFile.find();
-    if (Array.isArray(file) && file.length > 0) {
+    const file = await PresentationFile.findOne();
+    if (file) {
       if (userId) {
-        res.status(200).json(file[0]);
+        res.status(200).json(file);
         return;
       } else {
-        res.status(200).json({ file: file[0].file });
+        res.download(`${file.file}`);
         return;
       }
     } else {
