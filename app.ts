@@ -11,6 +11,7 @@ import { DB_HOST, PORT, SCOPE_HOST } from "./config/constants";
 import sendmail from "./routes/mail.routes";
 import devRoutes from "./routes/dev.routes";
 import fileRoutes from "./routes/file.routes";
+import articleRoutes from "./routes/article.routes";
 
 const corsOptions = {
   origin: SCOPE_HOST,
@@ -23,7 +24,7 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
-app.use("/uploads", express.static("uploads", {maxAge: 1296000000}));
+app.use("/uploads", express.static("uploads", { maxAge: 1296000000 }));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
@@ -33,6 +34,7 @@ app.use("/api/tag", tagRoutes);
 app.use("/api/project", projectRoutes);
 app.use("/api/file", fileRoutes);
 app.use("/api/mail", sendmail);
+app.use("/api/article", articleRoutes);
 app.use("/api/dev", devRoutes);
 const start = async () => {
   try {

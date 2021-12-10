@@ -88,17 +88,18 @@ export interface IProductionArticle extends Document {
   createdAt: Date;
   updatedAt: Date;
   author: Schema.Types.ObjectId;
+  production: Schema.Types.ObjectId;
+  theme: string;
   title: string;
   content: string;
-  production: Schema.Types.ObjectId;
 }
 export interface IStep extends Document {
   createdAt: Date;
   updatedAt: Date;
   author: Schema.Types.ObjectId;
-  production: Schema.Types.ObjectId;
   title: string;
   content: string;
+  production: Schema.Types.ObjectId;
   image: string;
 }
 
