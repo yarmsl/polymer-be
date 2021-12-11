@@ -7,9 +7,13 @@ const getAllProjectsController = async (
 ): Promise<void> => {
   const userId = req.body?.user?.userId;
   try {
-    const projects = await Project.find().populate("author").populate("tags").populate('customer');
+    const projects = await Project.find()
+      .populate("author")
+      .populate("tags")
+      .populate("customer");
     if (userId) {
       res.status(200).json(projects);
+      return;
     } else {
       const projectsFE = projects?.map((project) => {
         return {
@@ -24,6 +28,7 @@ const getAllProjectsController = async (
         };
       });
       res.status(200).json(projectsFE);
+      return;
     }
   } catch (e) {
     res.status(500).json({ message: "getting all projects error" });

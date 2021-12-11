@@ -10,6 +10,7 @@ const getAllCustomersController = async (
     const customers = await Customer.find().populate('author').populate('projects');
     if (userId) {
       res.status(200).json(customers);
+      return;
     } else {
       const customersFE = customers?.map((customer) => {
         return {

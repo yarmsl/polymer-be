@@ -12,6 +12,10 @@ import sendmail from "./routes/mail.routes";
 import devRoutes from "./routes/dev.routes";
 import fileRoutes from "./routes/file.routes";
 import articleRoutes from "./routes/article.routes";
+import productionRoutes from "./routes/production.routes";
+import storyRoutes from "./routes/story.routes";
+import storyArticlesRoutes from "./routes/storyArticle.routes";
+import vacancyRoutes from "./routes/vacancy.routes";
 
 const corsOptions = {
   origin: SCOPE_HOST,
@@ -35,6 +39,10 @@ app.use("/api/project", projectRoutes);
 app.use("/api/file", fileRoutes);
 app.use("/api/mail", sendmail);
 app.use("/api/article", articleRoutes);
+app.use("/api/production", productionRoutes);
+app.use("/api/story", storyRoutes);
+app.use("/api/storyarticle", storyArticlesRoutes);
+app.use("/api/vacancy", vacancyRoutes);
 app.use("/api/dev", devRoutes);
 const start = async () => {
   try {

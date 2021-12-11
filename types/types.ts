@@ -74,22 +74,12 @@ export interface IArticle extends Document {
   images: string[];
 }
 
-export interface IProduction extends Document {
-  createdAt: Date;
-  updatedAt: Date;
-  author: Schema.Types.ObjectId;
-  title: string;
-  content: string;
-  articles: Schema.Types.ObjectId[];
-  steps: Schema.Types.ObjectId[];
-}
-
 export interface IProductionArticle extends Document {
   createdAt: Date;
   updatedAt: Date;
   author: Schema.Types.ObjectId;
-  production: Schema.Types.ObjectId;
-  theme: string;
+  steps: Schema.Types.ObjectId[];
+  order: number;
   title: string;
   content: string;
 }
@@ -97,9 +87,10 @@ export interface IStep extends Document {
   createdAt: Date;
   updatedAt: Date;
   author: Schema.Types.ObjectId;
+  order: number;
   title: string;
   content: string;
-  production: Schema.Types.ObjectId;
+  productionArticle: Schema.Types.ObjectId;
   image: string;
 }
 
