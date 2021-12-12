@@ -20,6 +20,7 @@ const getAllProductionArticleController = async (
           title: pa.title,
           content: pa.content,
           order: pa.order,
+          steps: pa.steps,
         };
       });
       res.status(200).json(productionArticlesFE);
