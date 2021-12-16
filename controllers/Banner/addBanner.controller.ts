@@ -8,12 +8,13 @@ const addBannerController = async (
   try {
     const { userId } = req.body.user;
     const image = req.file != null ? req.file.path : "";
-    const { text } = req.body;
+    const { text, order } = req.body;
 
     const banner = new Banner({
       author: userId,
       image,
       text,
+      order,
     });
     await banner.save();
 

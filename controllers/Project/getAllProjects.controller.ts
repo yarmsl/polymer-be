@@ -11,6 +11,9 @@ const getAllProjectsController = async (
       .populate("author")
       .populate("tags")
       .populate("customer");
+    if (Array.isArray(projects) && projects.length > 0) {
+      projects?.sort((a, b) => a.order - b.order);
+    }
     if (userId) {
       res.status(200).json(projects);
       return;
@@ -25,6 +28,7 @@ const getAllProjectsController = async (
           customer: project.customer,
           tags: project.tags,
           slug: project.slug,
+          order: project.order,
         };
       });
       res.status(200).json(projectsFE);

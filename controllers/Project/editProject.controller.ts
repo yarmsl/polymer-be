@@ -23,6 +23,7 @@ const editProjectController = async (
       tags,
       images: imagesPaths,
       slug,
+      order
     } = req.body;
 
     const projectExist = await Project.findOne({ slug });
@@ -94,6 +95,7 @@ const editProjectController = async (
         tags,
         images,
         slug,
+        order
       });
       const result = await Project.findById(projectId);
       res.status(200).json(result);

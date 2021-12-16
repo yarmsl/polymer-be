@@ -7,11 +7,11 @@ const editBannerController = async (
 ): Promise<void> => {
   try {
     const { bannerId } = req.params;
-    const { text } = req.body;
+    const { text, order } = req.body;
 
     const editedBanner = await Banner.findByIdAndUpdate(
       bannerId,
-      { text },
+      { text, order },
       { new: true }
     );
     res.status(200).json(editedBanner);

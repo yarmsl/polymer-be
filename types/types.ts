@@ -33,6 +33,7 @@ export interface ICustomer extends Document {
   slug: string;
   logo: string;
   description: string;
+  order: number;
 }
 
 export interface ITag extends Document {
@@ -42,6 +43,7 @@ export interface ITag extends Document {
   projects: Schema.Types.ObjectId[];
   name: string;
   slug: string;
+  order: number;
 }
 
 export interface IBanner extends Document {
@@ -50,6 +52,7 @@ export interface IBanner extends Document {
   author: Schema.Types.ObjectId;
   text: string;
   image: string;
+  order: number;
 }
 
 export interface IProject extends Document {
@@ -63,6 +66,7 @@ export interface IProject extends Document {
   year: number;
   images: string[];
   tags: Schema.Types.ObjectId[];
+  order: number;
 }
 
 export interface IArticle extends Document {

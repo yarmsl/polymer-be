@@ -14,7 +14,7 @@ const addProjectController = async (
       req.files != null
         ? (req.files as Express.Multer.File[]).map((file) => file.path)
         : [];
-    const { title, year, done, customer, tags, slug } = req.body;
+    const { title, year, done, customer, tags, slug, order } = req.body;
     const arrTags = Array.isArray(tags) ? tags : tags != null ? [tags] : [];
     const projectExist = await Project.findOne({ slug });
     if (projectExist) {
@@ -30,6 +30,7 @@ const addProjectController = async (
       customer,
       tags: arrTags,
       slug,
+      order
     });
     await newProject.save();
     await Customer.findByIdAndUpdate(customer, {

@@ -7,7 +7,12 @@ const getAllCustomersController = async (
 ): Promise<void> => {
   const userId = req.body?.user?.userId;
   try {
-    const customers = await Customer.find().populate('author').populate('projects');
+    const customers = await Customer.find()
+      .populate("author")
+      .populate("projects");
+    if (Array.isArray(customers) && customers.length > 0) {
+      customers.sort((a, b) => a.order - b.order);
+    }
     if (userId) {
       res.status(200).json(customers);
       return;
@@ -20,10 +25,11 @@ const getAllCustomersController = async (
           description: customer.description,
           logo: customer.logo,
           slug: customer.slug,
+          order: customer.order,
         };
       });
       res.status(200).json(customersFE);
-      return
+      return;
     }
   } catch (e) {
     res.status(500).json({ message: "getting all customers error" });

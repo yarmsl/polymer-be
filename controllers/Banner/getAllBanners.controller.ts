@@ -7,6 +7,9 @@ const getAllBannersController = async (
 ): Promise<void> => {
   try {
     const banners = await Banner.find();
+    if (Array.isArray(banners) && banners.length > 0) {
+      banners?.sort((a, b) => a.order - b.order);
+    }
     res.status(200).json(banners);
     return;
   } catch (e) {

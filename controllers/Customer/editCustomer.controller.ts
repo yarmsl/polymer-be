@@ -8,7 +8,7 @@ const editCustomerController = async (
   try {
     const logo = req.file != null ? req.file.path : req.body.logo;
     const { customerId } = req.params;
-    const { name, description, slug } = req.body;
+    const { name, description, slug, order } = req.body;
     const checkExistName = await Customer.findOne({ name });
     if (checkExistName) {
       res.status(400).json({ message: "this customer exists" });
@@ -21,7 +21,7 @@ const editCustomerController = async (
     }
     const editedCustomer = await Customer.findByIdAndUpdate(
       customerId,
-      { name, description, logo, slug },
+      { name, description, logo, slug, order },
       { new: true }
     );
     res.status(200).json(editedCustomer);

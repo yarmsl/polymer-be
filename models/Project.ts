@@ -11,6 +11,7 @@ const projectSchema = new Schema<IProject>(
     images: [{ type: String, required: true }],
     tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }],
     slug: { type: String, required: true, unique: true, index: true },
+    order: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

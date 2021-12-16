@@ -9,7 +9,7 @@ const addCustomerController = async (
   try {
     const { userId } = req.body.user;
     const logo = req.file != null ? req.file.path : "";
-    const { name, description, slug } = req.body;
+    const { name, description, slug, order } = req.body;
     const checkExistName = await Customer.findOne({ name });
     if (checkExistName) {
       res.status(400).json({ message: "this customer exists" });
@@ -26,6 +26,7 @@ const addCustomerController = async (
       logo,
       description,
       slug,
+      order
     });
     await customer.save();
     await User.findByIdAndUpdate(req.body.user.userId, {

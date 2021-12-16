@@ -7,7 +7,10 @@ const getAllTagsController = async (
 ): Promise<void> => {
   const userId = req.body?.user?.userId;
   try {
-    const tags = await Tag.find().populate('author').populate('projects');
+    const tags = await Tag.find().populate("author").populate("projects");
+    if (Array.isArray(tags) && tags.length > 0) {
+      tags?.sort((a, b) => a.order - b.order);
+    }
     if (userId) {
       res.status(200).json(tags);
     } else {
@@ -17,6 +20,7 @@ const getAllTagsController = async (
           projects: tag.projects,
           name: tag.name,
           slug: tag.slug,
+          order: tag.order,
         };
       });
       res.status(200).json(tagsFE);
