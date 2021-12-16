@@ -10,9 +10,13 @@ export const FRONT_HOST_DEV = process.env.FRONT_HOST_DEV as string;
 export const FRONT_HOST_IP = process.env.FRONT_HOST_IP as string;
 export const FRONT_HOST_PROD = process.env.FRONT_HOST_PROD as string;
 export const FRONT_HOST_PROD_SSL = process.env.FRONT_HOST_PROD_SSL as string;
+export const FRONT_HOST_PROD_WWW = process.env.FRONT_HOST_PROD_WWW as string;
+export const FRONT_HOST_PROD_WWW_SSL = process.env.FRONT_HOST_PROD_WWW_SSL as string;
 export const SCOPE_HOST = [
   FRONT_HOST_DEV,
   FRONT_HOST_IP,
   FRONT_HOST_PROD,
   FRONT_HOST_PROD_SSL,
+  FRONT_HOST_PROD_WWW,
+  FRONT_HOST_PROD_WWW_SSL
 ];
