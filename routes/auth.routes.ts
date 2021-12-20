@@ -9,7 +9,7 @@ const router = Router();
 router.post(
   "/signin",
   [
-    check("email", "enter correct email").normalizeEmail().isEmail(),
+    check("email", "enter correct email").isEmail(),
     check("password", "enter pass").exists().notEmpty(),
   ],
   signInController
