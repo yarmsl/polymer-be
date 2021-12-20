@@ -25,7 +25,6 @@ const editProjectController = async (
       slug,
       order
     } = req.body;
-
     const projectExist = await Project.findOne({ slug });
     if (projectExist) {
       res.status(400).json({ message: "this project exists" });
@@ -63,7 +62,7 @@ const editProjectController = async (
     }
 
     if (editingProject) {
-      if (customer && customer !== editingProject.customer.toString()) {
+      if (customer && customer !== editingProject?.customer?.toString() || '') {
         await Customer.findByIdAndUpdate(editingProject.customer, {
           $pull: { projects: editingProject._id },
         });
