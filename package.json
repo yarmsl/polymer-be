@@ -1,47 +1,60 @@
 {
-	"name": "mern",
-	"version": "1.0.0",
-	"description": "MERN stack",
-	"main": "app.ts",
-	"scripts": {
-		"build": "tsc",
-		"start": "ts-node app.ts",
-		"dev": "nodemon app.ts",
-		"prod": "node build/app.js"
-	},
-	"keywords": [
-		"mern",
-		"react"
-	],
-	"author": "Yaroslav M. <slideryo@gmail.com>",
-	"license": "ISC",
-	"dependencies": {
-		"bcrypt": "^5.0.1",
-		"cors": "^2.8.5",
-		"dotenv": "^10.0.0",
-		"express": "^4.17.1",
-		"express-validator": "^6.12.1",
-		"jsonwebtoken": "^8.5.1",
-		"lodash": "^4.17.21",
-		"mongoose": "^6.0.12",
-		"multer": "^1.4.3",
-		"nodemailer": "^6.7.2"
-	},
-	"devDependencies": {
-		"@types/bcrypt": "^5.0.0",
-		"@types/cors": "^2.8.12",
-		"@types/express": "^4.17.13",
-		"@types/jsonwebtoken": "^8.5.5",
-		"@types/lodash": "^4.14.177",
-		"@types/multer": "^1.4.7",
-		"@types/node": "^16.7.2",
-		"@types/nodemailer": "^6.4.4",
-		"@typescript-eslint/eslint-plugin": "^4.29.3",
-		"@typescript-eslint/parser": "^4.29.3",
-		"concurrently": "^6.2.1",
-		"eslint": "^7.32.0",
-		"nodemon": "^2.0.12",
-		"ts-node": "^10.2.1",
-		"typescript": "^4.3.5"
-	}
+  "name": "mern",
+  "version": "1.0.0",
+  "description": "MERN stack",
+  "main": "src/app.ts",
+  "scripts": {
+    "prebuild": "rimraf ./dist",
+    "build": "dotenv -e .env.production tsc",
+    "start": "dotenv -e .env.development ts-node --files src/app.ts",
+    "dev": "dotenv -e .env.development nodemon src/app.ts",
+    "dev:bd": "docker-compose -f dev-docker-compose.yml up -d",
+    "prod": "dotenv -e .env.production node dist/app.js",
+    "lint": "eslint src",
+    "lint:fix": "eslint \"src/**/*.ts*\" --fix",
+    "prettier": "prettier src --check",
+    "prettier:fix": "prettier src --write",
+    "format": "yarn prettier:fix && yarn lint:fix"
+  },
+  "keywords": [
+    "mern",
+    "react"
+  ],
+  "author": "Yaroslav M. <slideryo@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1",
+    "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
+    "mongoose": "^6.0.12",
+    "multer": "^1.4.3",
+    "nodemailer": "^6.7.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.5",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^16.7.2",
+    "@types/nodemailer": "^6.4.4",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "dotenv-cli": "^7.0.0",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.6.2",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.5"
+  },
+  "_moduleAliases": {
+    "~": "src"
+  }
 }
