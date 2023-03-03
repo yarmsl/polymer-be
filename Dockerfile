@@ -1,9 +1,10 @@
 FROM node:14-alpine
 WORKDIR /app
 ADD package.json package.json
-RUN npm install
+ADD yarn.lock yarn.lock
+RUN yarn install
 ADD . .
-RUN npm run build
+RUN yarn build
 VOLUME ["/app/uploads"]
-CMD ["npm", "run", "prod"]
+CMD ["yarn", "prod"]
 EXPOSE 5000
