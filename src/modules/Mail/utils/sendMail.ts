@@ -1,11 +1,11 @@
-import { createTransport } from "nodemailer";
-import { MailOptions } from "nodemailer/lib/sendmail-transport";
+import { createTransport } from 'nodemailer';
+import { MailOptions } from 'nodemailer/lib/sendmail-transport';
 
 export const sendMail = (
   service: string,
   user: string,
   pass: string,
-  msg: MailOptions
+  msg: MailOptions,
 ): Promise<unknown> => {
   return new Promise((resolve, reject) => {
     const transporter = createTransport({
@@ -15,7 +15,7 @@ export const sendMail = (
         pass,
       },
       headers: {
-        Precedence: "bulk",
+        Precedence: 'bulk',
       },
     });
     transporter.sendMail(msg, (err, info) => {

@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+
 import { Banner } from '../models/Banner.model';
 
 export const updateBannerController = async (req: Request, res: Response): Promise<void> => {

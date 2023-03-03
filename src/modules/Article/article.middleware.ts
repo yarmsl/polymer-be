@@ -1,6 +1,8 @@
-import { NextFunction, Request, Response } from 'express';
-import multer from 'multer';
 import { existsSync, mkdirSync } from 'fs';
+
+import { NextFunction, Request, Response } from 'express';
+
+import multer from 'multer';
 
 export const articleUpload = async (
   req: Request,
@@ -12,7 +14,7 @@ export const articleUpload = async (
   }
   const { user } = req.body;
 
-  const path = `uploads/article/`;
+  const path = 'uploads/article/';
   if (!existsSync(path)) {
     mkdirSync(path, { recursive: true });
   }

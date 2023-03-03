@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+
 import { BottomBanner } from '../models/BottomBanner.model';
 
 export const updateBottomBannerController = async (req: Request, res: Response): Promise<void> => {

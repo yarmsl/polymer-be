@@ -1,5 +1,7 @@
-import { Request, Response } from 'express';
 import { existsSync, unlinkSync } from 'fs';
+
+import { Request, Response } from 'express';
+
 import { Banner } from '../models/Banner.model';
 
 export const deleteBannerController = async (req: Request, res: Response): Promise<void> => {

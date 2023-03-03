@@ -1,6 +1,8 @@
-import { NextFunction, Request, Response } from 'express';
-import multer from 'multer';
 import { existsSync, mkdirSync } from 'fs';
+
+import { NextFunction, Request, Response } from 'express';
+
+import multer from 'multer';
 
 export const bannerUpload = async (
   req: Request,
